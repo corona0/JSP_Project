@@ -1,15 +1,5 @@
-
-<html>
-<head>
-<title>Main</title>
-<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
-<meta http-equiv="Content-Type" content="text/html; utf-8">
-   <meta charset="utf-8">
-<style type="text/css">
-
 body{
    margin: 0 auto;
-
 }
 * { }
 .section {
@@ -57,7 +47,7 @@ body{
 .autor{
    float : left;
    width :100%;
-   padding : 10px;
+   padding : 0px;
    box-sizing : border-box; 
    /*이게 없으면 100%를 넘어서 스크롤바가 생김*/
 }
@@ -80,7 +70,7 @@ body{
    margin-left: 5px;
    line-height: 28px;
    font-weight: bold;
-   font-size: 32px;
+   font-size: 25px;
 }
 .autor .date{
    line-height:16px ;
@@ -99,11 +89,25 @@ body{
    word-wrap:break-word;
 }
 
-   .bar{
+   .logout{
    background-color: #aae1e6;
    position: fixed;
    left: 0; bottom: 0; right: 0;
    height: 75px;
+   }
+   .logout a{
+      margin-top: 28px;
+      text-align: center;
+      color: white;
+   }
+   .form_logout_button{
+      background-color: #aae1e6;
+      color: white; 
+      font-size: 17px; 
+      font-weight: 500;
+      border: 0;
+      outline: 0;
+      width: 100%;
    }
 #menu-area{
    background-color: #aae1e6;
@@ -140,11 +144,11 @@ body{
 #menu-area>a:nth-child(2){
    color:#aae1e6;
 }
-
-.form_jindan_button{
+.form_memManage_button{
    margin-top: 20px;
-    width: 100%; 
-    height: 44px; 
+   margin-left: 20px; 
+    width: 90%; 
+    height: 55px; 
     background-color: rgb(83, 154, 236); 
     border: 1px; 
     border-radius: 3px; 
@@ -152,55 +156,43 @@ body{
     font-size: 17px; 
     font-weight: 500;
 }
-</style>
-<script> function fn_spread(id){ 
-   var getID = document.getElementById(id); 
-   getID.style.display=(getID.style.display=='block') ? 'none' : 'block'; 
-} 
-</script>
 
+.form_boardManage_button{
+   margin-top: 50px;
+   margin-left: 20px; 
+    width: 90%; 
+    height: 55px; 
+    background-color: rgb(83, 154, 236); 
+    border: 1px; 
+    border-radius: 3px; 
+    color: white; 
+    font-size: 17px; 
+    font-weight: 500;
+}
 
-</head>
-<body>
-<div id="header-area" class="section">
-	<div class="icon">
-		<a href="Main.html">
-         <div class="photo"></div>
-      </a>
-		</div> 
-		<div id="menu-area" class="section">
-   <center>
-   	<ul>
-      <li><a href="selfTest.html">&nbsp;&nbsp;자가진단</a></li>
-      <li><a href="inform.html">&nbsp;&nbsp;&nbsp;&nbsp;선별진료소 안내</a></li>
-      <li><a href="board.html">&nbsp;&nbsp;&nbsp;&nbsp;게시판</a></li>
-   </ul></center>
-      
-</div>   
-	</div>
-</div>
-<div id="contents-area" class="section">
-   <div class="feed">
-   <div class= "autor">
-      <center><div class = "photo"></div></center>
-      <center><div class="name">ID</div></center>
-   
+#content {
+   text-align: center;
+}
 
-   </div>
-         
-
-<div id="real-area" class="section">
-   <button class="form_jindan_button" onclick="fn_spread('jindanResult');">진단결과</button> 
-   <div id="jindanResult" class="jindan" style="display: none;">
-      <h1>진단결과
-      </h1>
-      <p>회원님은 양성입니다.</p>
-   </div>
-</div>
-
-<div id="footer-area" class="section">
-
-<div class="bar"></div>	
-</div>
-</body>
-</html>
+.banner {
+   position: relative; 
+   width: 340px; 
+   height: 100px; 
+   top: 20px;  
+   margin:0 auto; 
+   padding:0; 
+   overflow: hidden;
+}
+   .banner ul {
+      position: absolute; 
+      margin: 0px; 
+      padding:0; 
+      list-style: none; 
+   }
+   .banner ul li {
+      float: left; 
+      width: 340px; 
+      height: 210px; 
+      margin:0; 
+      padding:0;
+   }
