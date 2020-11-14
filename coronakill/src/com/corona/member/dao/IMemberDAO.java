@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class ILoginDAO implements LoginDAO{
+public class IMemberDAO implements MemberDAO{
 	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public ILoginDAO() {
+	public IMemberDAO() {
 		try {
 			
 			String mariaDB = "org.mariadb.jdbc.Driver";
@@ -58,7 +58,8 @@ public class ILoginDAO implements LoginDAO{
 	}
 
 	@Override
-	public void insert_member() {
+	public boolean insert_member() {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}

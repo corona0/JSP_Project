@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.corona.member.dao.ILoginDAO;
+import com.corona.member.dao.IMemberDAO;
 import com.mysql.cj.Session;
 
 /**
@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
 		session.setAttribute("userID", userID);
 		
 		/*DAO 호출 > select Querry 실행*/
-		ILoginDAO dao = new ILoginDAO();
+		IMemberDAO dao = new IMemberDAO();
 		boolean result = dao.select_member(userID, userPW);
 		
 		/*script를 사용하기 위한 PrintWriter 선언*/
