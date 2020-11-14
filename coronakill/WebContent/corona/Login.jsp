@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,6 @@
 
 </head>
 <body>
-
 	<div id="header-area" class="section">
 		<div class="logo">
 			<center>
@@ -23,7 +24,8 @@
 	<div id="contents-area" class="section">
 		<div class="login">
 			<div class="form_container">
-				<form name="login_form" action="/Login" method="post">
+				<!-- <form name="login_form" action="/corona/Login" method="post"> -->
+				<form name="login_form" action="Login" method="post">
 					<div class="form_title_div">
 						<p class="form_title_p">로그인</p>
 					</div>
