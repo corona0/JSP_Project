@@ -28,7 +28,6 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("doGet Method ...");
 		
 		String member_id = request.getParameter("username");
 		String member_password = request.getParameter("password");
@@ -48,7 +47,7 @@ public class LoginController extends HttpServlet {
 		if (result) {
 			script.println("<script>");
 			script.println("alert('로그인 성공')");
-			script.println("location.href ='"+request.getContextPath()+"/corona/Main.html'");
+			script.println("location.href ='"+request.getContextPath()+"/corona/Main.jsp'");
 			script.println("</script>");
 		}else {
 			script.println("<script>");
@@ -59,7 +58,6 @@ public class LoginController extends HttpServlet {
 	}// The end of Method
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost Method ...");
 		doGet(request, response);
 	}// The end of Method
 
