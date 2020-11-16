@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.corona.member.dao.IMemberDAO;
+import com.corona.member.DAO.IMemberDAO;
 import com.mysql.cj.Session;
 
 /**
@@ -30,18 +30,18 @@ public class LoginController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		System.out.println("doGet Method ...");
 		
-		String userID = request.getParameter("username");
-		String userPW = request.getParameter("password");
-		System.out.println("userID : "+userID);
-		System.out.println("userPW : "+userPW);
+		String member_id = request.getParameter("username");
+		String member_password = request.getParameter("password");
+		System.out.println("userID : "+member_id);
+		System.out.println("userPW : "+member_password);
 		
 		/*SESSION에 로그인 정보 추가*/
 		HttpSession session = request.getSession();
-		session.setAttribute("userID", userID);
+		session.setAttribute("userID", member_id);
 		
 		/*DAO 호출 > select Querry 실행*/
 		IMemberDAO dao = new IMemberDAO();
-		boolean result = dao.select_MemberLogin(userID, userPW);
+		boolean result = dao.select_MemberLogin(member_id, member_password);
 		
 		/*script를 사용하기 위한 PrintWriter 선언*/
 		PrintWriter script = response.getWriter();

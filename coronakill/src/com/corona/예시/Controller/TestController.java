@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.corona.예시.Dao.ITestDAO;
+import com.corona.예시.DAO.ITestDAO;
 
 /**
  * Servlet implementation class Test

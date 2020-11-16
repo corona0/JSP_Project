@@ -23,16 +23,16 @@
 			</td>
 		</tr>
 		<tr>
-			<td>이름</td><td><input type="text"  id="memberName" name="memberName"  placeholder="이름 입력" autofocus size="10"></td>
+			<td>이름</td><td><input type="text"  id="member_name" name="member_name"  placeholder="이름 입력" autofocus size="10"></td>
 		</tr>
 		<tr>
-			<td>아이디</td><td><input type="text"  id="memberID" name="memberID" placeholder="아이디 입력"  size="10"></td>
+			<td>아이디</td><td><input type="text"  id="member_id" name="member_id" placeholder="아이디 입력"  size="10"></td>
 		</tr>
 		<tr>
-			<td>비밀번호</td><td><input type="text"  id="memberPW" name="memberPW" placeholder="비밀번호 입력" size="10"></td>
+			<td>비밀번호</td><td><input type="text"  id="member_password" name="member_password" placeholder="비밀번호 입력" size="10"></td>
 		</tr>
 		<tr>
-			<td>비밀번호 확인</td><td><input type="text"  id="memberPWcheck" name="memberPWcheck" placeholder="비밀번호 재입력" size="10"></td>
+			<td>비밀번호 확인</td><td><input type="text"  id="member_passwordCheck" name="member_passwordCheck" placeholder="비밀번호 재입력" size="10"></td>
 		</tr>
 		<tr>
 			<td>주소</td>

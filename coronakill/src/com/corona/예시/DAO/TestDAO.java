@@ -1,4 +1,4 @@
-package com.corona.예시.Dao;
+package com.corona.예시.DAO;
 
 /*
  * This interface must be implemented by class

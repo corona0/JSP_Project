@@ -1,4 +1,4 @@
-package com.corona.member.dao;
+package com.corona.member.DAO;
 
 public interface MemberDAO {
 	public boolean select_MemberLogin(String userID, String userPassword);

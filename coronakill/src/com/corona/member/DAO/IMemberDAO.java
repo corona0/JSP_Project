@@ -1,4 +1,4 @@
-package com.corona.member.dao;
+package com.corona.member.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,10 +17,6 @@ public class IMemberDAO implements MemberDAO{
 			String mariaDB = "org.mariadb.jdbc.Driver";
 			String mysql = "com.mysql.jdbc.Driver";
 			
-//			String dataBaseUrl = "jdbc:mysql://localhost:3306/[데이터베이스]";
-//			String dataBaseId = "[DB아이디]";
-//			String dataBasePw = "[DB비밀번호]";
-			
 			String dataBaseUrl = "jdbc:mysql://localhost:3306/corona?serverTimezone=UTC";
 			String dataBaseId = "root";
 			String dataBasePw = "1234";
@@ -33,16 +29,15 @@ public class IMemberDAO implements MemberDAO{
 	}
 
 	@Override
-	public boolean select_MemberLogin(String userID, String userPassword) {
-		System.out.println("select_member()");
-//		String SQL = "SELECT userPassword FROM USER WHERE userID = ? ";
-		String SQL = "select member_password from member_info where member_id = ? ";
+	public boolean select_MemberLogin(String member_id, String member_password) {
+		System.out.println("select_MemberLogin()");
+		String SQL = "SELECT member_password FROM member WHERE member_id = ? ";
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, userID);
+			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				if (rs.getString(1).equals(userPassword)) {
+				if (rs.getString(1).equals(member_password)) {
 					System.out.println("Success Login");
 					return true;
 				}else {
