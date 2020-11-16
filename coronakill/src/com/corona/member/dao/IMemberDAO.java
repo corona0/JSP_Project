@@ -33,7 +33,7 @@ public class IMemberDAO implements MemberDAO{
 	}
 
 	@Override
-	public boolean select_member(String userID, String userPassword) {
+	public boolean select_MemberLogin(String userID, String userPassword) {
 		System.out.println("select_member()");
 		String SQL = "SELECT userPassword FROM USER WHERE userID = ? ";
 		try {

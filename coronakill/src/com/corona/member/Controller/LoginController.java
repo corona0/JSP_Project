@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 		
 		/*DAO 호출 > select Querry 실행*/
 		IMemberDAO dao = new IMemberDAO();
-		boolean result = dao.select_member(userID, userPW);
+		boolean result = dao.select_MemberLogin(userID, userPW);
 		
 		/*script를 사용하기 위한 PrintWriter 선언*/
 		PrintWriter script = response.getWriter();
