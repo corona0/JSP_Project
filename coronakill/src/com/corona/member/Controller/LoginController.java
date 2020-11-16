@@ -18,7 +18,6 @@ import com.mysql.cj.Session;
 /**
  * Servlet implementation class Login
  */
-//@WebServlet("/Login")
 @WebServlet(urlPatterns= {"/Login","/corona/Login"})
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +27,7 @@ public class LoginController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		System.out.println("doGet Method ...");
 		
 		String userID = request.getParameter("username");

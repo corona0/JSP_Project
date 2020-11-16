@@ -14,8 +14,7 @@ import com.corona.member.dao.IMemberDAO;
 /**
  * Servlet implementation class JoinController
  */
-//@WebServlet(urlPatterns={"/Join","/corona/Join"})
-@WebServlet("/corona/Join")
+@WebServlet(urlPatterns={"/Join","/corona/Join"})
 public class JoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +26,9 @@ public class JoinController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html;charset=utf-8");
+		
 		String memberType = request.getParameter("memberType");
 		String memberName = request.getParameter("memberName");
 		String memberID = request.getParameter("memberID");
