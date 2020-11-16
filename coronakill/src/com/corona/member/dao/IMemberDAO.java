@@ -21,7 +21,7 @@ public class IMemberDAO implements MemberDAO{
 //			String dataBaseId = "[DB아이디]";
 //			String dataBasePw = "[DB비밀번호]";
 			
-			String dataBaseUrl = "jdbc:mysql://localhost:3306/BBS";
+			String dataBaseUrl = "jdbc:mysql://localhost:3306/corona?serverTimezone=UTC";
 			String dataBaseId = "root";
 			String dataBasePw = "1234";
 			
@@ -35,7 +35,8 @@ public class IMemberDAO implements MemberDAO{
 	@Override
 	public boolean select_MemberLogin(String userID, String userPassword) {
 		System.out.println("select_member()");
-		String SQL = "SELECT userPassword FROM USER WHERE userID = ? ";
+//		String SQL = "SELECT userPassword FROM USER WHERE userID = ? ";
+		String SQL = "select member_password from member_info where member_id = ? ";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
@@ -72,6 +73,12 @@ public class IMemberDAO implements MemberDAO{
 
 	@Override
 	public void update_member() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void select_member() {
 		// TODO Auto-generated method stub
 		
 	}

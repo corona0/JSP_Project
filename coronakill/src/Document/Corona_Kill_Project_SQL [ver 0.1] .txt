@@ -1,439 +1,48 @@
+CREATE TABLE `member_info` (
+  `member_id` varchar(50) NOT NULL,
+  `member_password` varchar(50) NOT NULL,
+  `member_name` varchar(50) NOT NULL,
+  `member_adress` varchar(50) NOT NULL,
+  `member_rank` varchar(50) NOT NULL,
+  `member_number` varchar(50) NOT NULL,
+  `member_result` varchar(50) DEFAULT NULL,
+  `member_selfresult` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-  CREATE TABLE "SCOTT"."MEMBER_INFO" 
-   (	"MEMBER_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_PASSWORD" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_NAME" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_ADRESS" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_RANK" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_NUMBER" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_RESULT" VARCHAR2(50 BYTE), 
-	"MEMBER_SELFRESULT" VARCHAR2(50 BYTE), 
-	 CONSTRAINT "XPKMEMBER_INFO" PRIMARY KEY ("MEMBER_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
- 
+CREATE TABLE `hospital_info` (
+  `hospital_id` varchar(50) NOT NULL,
+  `hospital_adress` varchar(50) NOT NULL,
+  `hospital_name` varchar(50) NOT NULL,
+  `hospital_type` varchar(50) NOT NULL,
+  `hospital_time` varchar(50) NOT NULL,
+  `hospital_password` varchar(50) NOT NULL,
+  `hospital_number` varchar(50) NOT NULL,
+  PRIMARY KEY (`hospital_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-  CREATE OR REPLACE TRIGGER "SCOTT"."TD_MEMBER_INFO" AFTER DELETE ON member_info for each row
--- ERwin Builtin Trigger
--- DELETE trigger on member_info 
-DECLARE NUMROWS INTEGER;
-BEGIN
-    /* ERwin Builtin Trigger */
-    /* member_info  board on parent delete restrict */
-    /* ERWIN_RELATION:CHECKSUM="0001c8f0", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="board"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_1", FK_COLUMNS="member_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM board
-      WHERE
-        /*  %JoinFKPK(board,:%Old," = "," AND") */
-        board.member_id = :old.member_id;
-    IF (NUMROWS > 0)
-    THEN
-      raise_application_error(
-        -20001,
-        'Cannot delete member_info because board exists.'
-      );
-    END IF;
+CREATE TABLE `reservation` (
+  `member_id` varchar(50) NOT NULL,
+  `reservation_id` varchar(50) NOT NULL,
+  `reservation_adr` varchar(50) NOT NULL,
+  `reservation_hospital` varchar(50) NOT NULL,
+  `reservation_date` varchar(50) NOT NULL,
+  `reservation_type` varchar(50) NOT NULL,
+  `hospital_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`reservation_id`),
+  KEY `R_2` (`member_id`),
+  KEY `R_3` (`hospital_id`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_info` (`member_id`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital_info` (`hospital_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-    /* ERwin Builtin Trigger */
-    /* member_info  reservation on parent delete restrict */
-    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_2", FK_COLUMNS="member_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM reservation
-      WHERE
-        /*  %JoinFKPK(reservation,:%Old," = "," AND") */
-        reservation.member_id = :old.member_id;
-    IF (NUMROWS > 0)
-    THEN
-      raise_application_error(
-        -20001,
-        'Cannot delete member_info because reservation exists.'
-      );
-    END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TD_MEMBER_INFO" ENABLE;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TU_MEMBER_INFO" AFTER UPDATE ON member_info for each row
--- ERwin Builtin Trigger
--- UPDATE trigger on member_info 
-DECLARE NUMROWS INTEGER;
-BEGIN
-  /* ERwin Builtin Trigger */
-  /* member_info  board on parent update restrict */
-  /* ERWIN_RELATION:CHECKSUM="00021f26", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="board"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_1", FK_COLUMNS="member_id" */
-  IF
-    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
-    :old.member_id <> :new.member_id
-  THEN
-    SELECT count(*) INTO NUMROWS
-      FROM board
-      WHERE
-        /*  %JoinFKPK(board,:%Old," = "," AND") */
-        board.member_id = :old.member_id;
-    IF (NUMROWS > 0)
-    THEN 
-      raise_application_error(
-        -20005,
-        'Cannot update member_info because board exists.'
-      );
-    END IF;
-  END IF;
-
-  /* ERwin Builtin Trigger */
-  /* member_info  reservation on parent update restrict */
-  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_2", FK_COLUMNS="member_id" */
-  IF
-    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
-    :old.member_id <> :new.member_id
-  THEN
-    SELECT count(*) INTO NUMROWS
-      FROM reservation
-      WHERE
-        /*  %JoinFKPK(reservation,:%Old," = "," AND") */
-        reservation.member_id = :old.member_id;
-    IF (NUMROWS > 0)
-    THEN 
-      raise_application_error(
-        -20005,
-        'Cannot update member_info because reservation exists.'
-      );
-    END IF;
-  END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TU_MEMBER_INFO" ENABLE;
- 
-
-  CREATE TABLE "SCOTT"."HOSPITAL_INFO" 
-   (	"HOSPITAL_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_ADRESS" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_NAME" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_TYPE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_TIME" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_PASSWORD" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_NUMBER" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	 CONSTRAINT "XPKHOSPITAL_INFO" PRIMARY KEY ("HOSPITAL_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TD_HOSPITAL_INFO" AFTER DELETE ON hospital_info for each row
--- ERwin Builtin Trigger
--- DELETE trigger on hospital_info 
-DECLARE NUMROWS INTEGER;
-BEGIN
-    /* ERwin Builtin Trigger */
-    /* hospital_info  reservation on parent delete restrict */
-    /* ERWIN_RELATION:CHECKSUM="0000e8de", PARENT_OWNER="", PARENT_TABLE="hospital_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_3", FK_COLUMNS="hospital_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM reservation
-      WHERE
-        /*  %JoinFKPK(reservation,:%Old," = "," AND") */
-        reservation.hospital_id = :old.hospital_id;
-    IF (NUMROWS > 0)
-    THEN
-      raise_application_error(
-        -20001,
-        'Cannot delete hospital_info because reservation exists.'
-      );
-    END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TD_HOSPITAL_INFO" ENABLE;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TU_HOSPITAL_INFO" AFTER UPDATE ON hospital_info for each row
--- ERwin Builtin Trigger
--- UPDATE trigger on hospital_info 
-DECLARE NUMROWS INTEGER;
-BEGIN
-  /* ERwin Builtin Trigger */
-  /* hospital_info  reservation on parent update restrict */
-  /* ERWIN_RELATION:CHECKSUM="0000fe3e", PARENT_OWNER="", PARENT_TABLE="hospital_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_3", FK_COLUMNS="hospital_id" */
-  IF
-    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
-    :old.hospital_id <> :new.hospital_id
-  THEN
-    SELECT count(*) INTO NUMROWS
-      FROM reservation
-      WHERE
-        /*  %JoinFKPK(reservation,:%Old," = "," AND") */
-        reservation.hospital_id = :old.hospital_id;
-    IF (NUMROWS > 0)
-    THEN 
-      raise_application_error(
-        -20005,
-        'Cannot update hospital_info because reservation exists.'
-      );
-    END IF;
-  END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TU_HOSPITAL_INFO" ENABLE;
- 
-
-  CREATE TABLE "SCOTT"."BOARD" 
-   (	"BOARD_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"BOARD_TITLE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"BOARD_CONTENT" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"BOARD_DATE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"MEMBER_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	 CONSTRAINT "XPKBOARD" PRIMARY KEY ("BOARD_ID", "MEMBER_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE, 
-	 CONSTRAINT "R_1" FOREIGN KEY ("MEMBER_ID")
-	  REFERENCES "SCOTT"."MEMBER_INFO" ("MEMBER_ID") ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TI_BOARD" BEFORE INSERT ON board for each row
--- ERwin Builtin Trigger
--- INSERT trigger on board 
-DECLARE NUMROWS INTEGER;
-BEGIN
-    /* ERwin Builtin Trigger */
-    /* member_info  board on child insert restrict */
-    /* ERWIN_RELATION:CHECKSUM="0000ea72", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="board"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_1", FK_COLUMNS="member_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM member_info
-      WHERE
-        /* %JoinFKPK(:%New,member_info," = "," AND") */
-        :new.member_id = member_info.member_id;
-    IF (
-      /* %NotnullFK(:%New," IS NOT NULL AND") */
-      
-      NUMROWS = 0
-    )
-    THEN
-      raise_application_error(
-        -20002,
-        'Cannot insert board because member_info does not exist.'
-      );
-    END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TI_BOARD" ENABLE;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TU_BOARD" AFTER UPDATE ON board for each row
--- ERwin Builtin Trigger
--- UPDATE trigger on board 
-DECLARE NUMROWS INTEGER;
-BEGIN
-  /* ERwin Builtin Trigger */
-  /* member_info  board on child update restrict */
-  /* ERWIN_RELATION:CHECKSUM="0000ed0f", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="board"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_1", FK_COLUMNS="member_id" */
-  SELECT count(*) INTO NUMROWS
-    FROM member_info
-    WHERE
-      /* %JoinFKPK(:%New,member_info," = "," AND") */
-      :new.member_id = member_info.member_id;
-  IF (
-    /* %NotnullFK(:%New," IS NOT NULL AND") */
-    
-    NUMROWS = 0
-  )
-  THEN
-    raise_application_error(
-      -20007,
-      'Cannot update board because member_info does not exist.'
-    );
-  END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TU_BOARD" ENABLE;
- 
-
-  CREATE TABLE "SCOTT"."RESERVATION" 
-   (	"MEMBER_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"RESERVATION_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"RESERVATION_ADR" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"RESERVATION_HOSPITAL" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"RESERVATION_DATE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"RESERVATION_TYPE" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	"HOSPITAL_ID" VARCHAR2(50 BYTE) NOT NULL ENABLE, 
-	 CONSTRAINT "XPKRESERVATION" PRIMARY KEY ("MEMBER_ID", "RESERVATION_ID", "HOSPITAL_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE, 
-	 CONSTRAINT "R_2" FOREIGN KEY ("MEMBER_ID")
-	  REFERENCES "SCOTT"."MEMBER_INFO" ("MEMBER_ID") ENABLE, 
-	 CONSTRAINT "R_3" FOREIGN KEY ("HOSPITAL_ID")
-	  REFERENCES "SCOTT"."HOSPITAL_INFO" ("HOSPITAL_ID") ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TI_RESERVATION" BEFORE INSERT ON reservation for each row
--- ERwin Builtin Trigger
--- INSERT trigger on reservation 
-DECLARE NUMROWS INTEGER;
-BEGIN
-    /* ERwin Builtin Trigger */
-    /* member_info  reservation on child insert restrict */
-    /* ERWIN_RELATION:CHECKSUM="000209e0", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_2", FK_COLUMNS="member_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM member_info
-      WHERE
-        /* %JoinFKPK(:%New,member_info," = "," AND") */
-        :new.member_id = member_info.member_id;
-    IF (
-      /* %NotnullFK(:%New," IS NOT NULL AND") */
-      
-      NUMROWS = 0
-    )
-    THEN
-      raise_application_error(
-        -20002,
-        'Cannot insert reservation because member_info does not exist.'
-      );
-    END IF;
-
-    /* ERwin Builtin Trigger */
-    /* hospital_info  reservation on child insert restrict */
-    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="hospital_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_3", FK_COLUMNS="hospital_id" */
-    SELECT count(*) INTO NUMROWS
-      FROM hospital_info
-      WHERE
-        /* %JoinFKPK(:%New,hospital_info," = "," AND") */
-        :new.hospital_id = hospital_info.hospital_id;
-    IF (
-      /* %NotnullFK(:%New," IS NOT NULL AND") */
-      
-      NUMROWS = 0
-    )
-    THEN
-      raise_application_error(
-        -20002,
-        'Cannot insert reservation because hospital_info does not exist.'
-      );
-    END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TI_RESERVATION" ENABLE;
- 
-
-  CREATE OR REPLACE TRIGGER "SCOTT"."TU_RESERVATION" AFTER UPDATE ON reservation for each row
--- ERwin Builtin Trigger
--- UPDATE trigger on reservation 
-DECLARE NUMROWS INTEGER;
-BEGIN
-  /* ERwin Builtin Trigger */
-  /* member_info  reservation on child update restrict */
-  /* ERWIN_RELATION:CHECKSUM="00021eca", PARENT_OWNER="", PARENT_TABLE="member_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_2", FK_COLUMNS="member_id" */
-  SELECT count(*) INTO NUMROWS
-    FROM member_info
-    WHERE
-      /* %JoinFKPK(:%New,member_info," = "," AND") */
-      :new.member_id = member_info.member_id;
-  IF (
-    /* %NotnullFK(:%New," IS NOT NULL AND") */
-    
-    NUMROWS = 0
-  )
-  THEN
-    raise_application_error(
-      -20007,
-      'Cannot update reservation because member_info does not exist.'
-    );
-  END IF;
-
-  /* ERwin Builtin Trigger */
-  /* hospital_info  reservation on child update restrict */
-  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="hospital_info"
-    CHILD_OWNER="", CHILD_TABLE="reservation"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
-    FK_CONSTRAINT="R_3", FK_COLUMNS="hospital_id" */
-  SELECT count(*) INTO NUMROWS
-    FROM hospital_info
-    WHERE
-      /* %JoinFKPK(:%New,hospital_info," = "," AND") */
-      :new.hospital_id = hospital_info.hospital_id;
-  IF (
-    /* %NotnullFK(:%New," IS NOT NULL AND") */
-    
-    NUMROWS = 0
-  )
-  THEN
-    raise_application_error(
-      -20007,
-      'Cannot update reservation because hospital_info does not exist.'
-    );
-  END IF;
-
-
--- ERwin Builtin Trigger
-END;
-
-/
-ALTER TRIGGER "SCOTT"."TU_RESERVATION" ENABLE;
+CREATE TABLE `board` (
+  `board_id` varchar(50) NOT NULL,
+  `board_title` varchar(50) NOT NULL,
+  `board_content` varchar(50) NOT NULL,
+  `board_date` varchar(50) NOT NULL,
+  `member_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`board_id`),
+  KEY `R_1` (`member_id`),
+  CONSTRAINT `board_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_info` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

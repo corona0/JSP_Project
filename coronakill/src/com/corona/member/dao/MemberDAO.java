@@ -5,4 +5,5 @@ public interface MemberDAO {
 	public boolean insert_member();
 	public void delete_member();
 	public void update_member();
+	public void select_member();
 }
