@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>Main</title>
@@ -13,7 +13,7 @@
 
 	<!-- HEADER -->
 	<%@include file="include/header.jsp"%>
-	
+
 	<div id="contents-area" class="section">
 		<div class="feed">
 			<div class="autor">
@@ -37,5 +37,7 @@
 				</center>
 				<div class="bar"></div>
 			</div>
+		</div>
+	</div>
 </body>
 </html>
