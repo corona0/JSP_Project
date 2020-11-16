@@ -9,10 +9,10 @@
 <meta charset="utf-8">
 
 <!-- CSS 적용 -->
-<link rel="stylesheet" href="../CSS/SelfTest.css">
+<link rel="stylesheet" href="../../CSS/SelfTest.css">
 <!-- Jquery 적용 -->
-<script type="text/javascript" src="../JS/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="../JS/selftest.js"></script>
+<script type="text/javascript" src="../../JS/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../../JS/selftest.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#Register").click(function() {
@@ -37,7 +37,7 @@
 <body>
 
 	<!-- HEADER -->
-	<%@include file="include/header.jsp"%>
+	<%@include file="../include/header.jsp"%>
 	<div id="contents-area" class="section">
 		<form>
 			<tr>

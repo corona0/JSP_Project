@@ -8,6 +8,7 @@
 	</div>
 	<div class="section">
 	<!-- <div id="menu-area" class="section"> -->
+		<a href="Main.jsp">Main</a>
 		<a href="SelfTest.jsp">자가진단</a>
 		<a href="Inform.jsp">선별진료소 안내</a>
 		<a href="MyPages.jsp">내정보</a>

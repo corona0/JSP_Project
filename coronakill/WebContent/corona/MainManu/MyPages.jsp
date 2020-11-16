@@ -7,7 +7,7 @@
 <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
 <meta http-equiv="Content-Type" content="text/html; utf-8">
    	<meta charset="utf-8">
-	<link rel="stylesheet" href="../CSS/MyPages.css">
+	<link rel="stylesheet" href="../../CSS/MyPages.css">
 <script> function fn_spread(id){ 
    var getID = document.getElementById(id); 
    getID.style.display=(getID.style.display=='block') ? 'none' : 'block'; 
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<!-- HEADER -->
-	<%@include file="include/header.jsp"%>
+	<%@include file="../include/header.jsp"%>
 	
 <div id="contents-area" class="section">
    <div class="feed">

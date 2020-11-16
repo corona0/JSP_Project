@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 		if (result) {
 			script.println("<script>");
 			script.println("alert('로그인 성공')");
-			script.println("location.href ='"+request.getContextPath()+"/corona/Main.jsp'");
+			script.println("location.href ='"+request.getContextPath()+"/corona/MainManu/Main.jsp'");
 			script.println("</script>");
 		}else {
 			script.println("<script>");
