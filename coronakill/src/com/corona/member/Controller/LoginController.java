@@ -32,12 +32,12 @@ public class LoginController extends HttpServlet {
 		
 		String member_id = request.getParameter("username");
 		String member_password = request.getParameter("password");
-		System.out.println("userID : "+member_id);
-		System.out.println("userPW : "+member_password);
+		System.out.println("member_id : "+member_id);
+		System.out.println("member_password : "+member_password);
 		
 		/*SESSION에 로그인 정보 추가*/
 		HttpSession session = request.getSession();
-		session.setAttribute("userID", member_id);
+		session.setAttribute("member_id", member_id);
 		
 		/*DAO 호출 > select Querry 실행*/
 		IMemberDAO dao = new IMemberDAO();
