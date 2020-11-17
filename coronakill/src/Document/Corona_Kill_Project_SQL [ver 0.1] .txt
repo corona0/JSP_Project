@@ -48,7 +48,7 @@ CREATE TABLE `board` (
   `member_id` 		varchar(50) NULL,				#FK
   `board_title` 	varchar(50) NULL,
   `board_content` 	varchar(50) NULL,
-  `board_date` 		varchar(50) NULL,
+  `board_date` 		timestamp default now(),
   PRIMARY KEY (`board_id`),
   KEY `R_1` (`member_id`),
   CONSTRAINT `board_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
@@ -60,3 +60,5 @@ select * from hospital;
 select * from reservation;
 
 INSERT INTO member values('test','test','test','test','test','test','test','test');
+INSERT INTO board(board_id,member_id,board_title,board_content) 
+VALUES(1,'test','Test 제목','test내용');
