@@ -15,7 +15,8 @@ public class IMemberDAO implements MemberDAO{
 		try {
 			
 			String mariaDB = "org.mariadb.jdbc.Driver";
-			String mysql = "com.mysql.jdbc.Driver";
+//			String mysql = "com.mysql.jdbc.Driver";
+			String mysql = "com.mysql.cj.jdbc.Driver";
 			
 			String dataBaseUrl = "jdbc:mysql://localhost:3306/corona?serverTimezone=UTC";
 			String dataBaseId = "root";

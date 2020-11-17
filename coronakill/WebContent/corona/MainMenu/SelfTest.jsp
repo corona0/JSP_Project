@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../JS/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../../JS/selftest.js"></script>
 <script>
-	$(document).ready(function() {
+/* 	$(document).ready(function() {
 		$("#Register").click(function() {
 			var checkbox_yes = document.getElementsByName("question");
 			var count = 0;
@@ -31,7 +31,7 @@
 				}
 			}
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -39,7 +39,7 @@
 	<!-- HEADER -->
 	<%@include file="../include/header.jsp"%>
 	<div id="contents-area" class="section">
-		<form>
+		<form action=SelfTest method="get">
 			<tr>
 				<h1>코로나 19 자가진단 설문 (COVID-19 Self Check)</h1>
 			</tr>
@@ -60,8 +60,8 @@
 							who visited foreign countries within the 14 days?</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="question" value="Y">예(YES)
-							<input type="checkbox" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question1" value="Y">예(YES)
+							<input type="radio" name="question1" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 				<div class="touch">
@@ -74,8 +74,8 @@
 							within the last 14 days?</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="question" value="Y">예(YES)
-							<input type="checkbox" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question2" value="Y">예(YES)
+							<input type="radio" name="question2" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 
@@ -89,8 +89,8 @@
 							last 14 days?</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="question" value="Y ">예(YES)
-							<input type="checkbox" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question3" value="Y">예(YES)
+							<input type="radio" name="question3" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 
@@ -106,8 +106,8 @@
 							a confirmed COVID-19 patient (or contact person)?</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="question" value="Y">예(YES)
-							<input type="checkbox" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question4" value="Y">예(YES)
+							<input type="radio" name="question4" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 				<div class="symptom">
@@ -120,8 +120,8 @@
 							or smell?</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="question" value="Y">예(YES)
-							<input type="checkbox" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question5" value="Y">예(YES)
+							<input type="radio" name="question5" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 				<div class="tfQ">
@@ -132,14 +132,14 @@
 						<td>Did you answer the above questions without falsehood?</td>
 					</tr>
 					<tr>
-						<td><input type="radio" name="question" value="Y">예(YES)
-							<input type="radio" name="question" value="N">아니오(NO)</td>
+						<td><input type="radio" name="question6" value="Y">예(YES)
+							<input type="radio" name="question6" value="N">아니오(NO)</td>
 					</tr>
 				</div>
 
 				<tr>
-					<td colspan="2"><input type="button" value="등록" id="Register"
-						onclick="submit()"><input type="button" value="초기화">
+					<td colspan="2"><input type="submit" value="등록" id="Register"
+						onclick="submit()"><input type="reset" value="초기화">
 					</td>
 				</tr>
 			</table>

@@ -175,6 +175,9 @@ body{
 </style>
 </head>
 <body>
+
+
+
 <div id="header-area" class="section">
 	<div class="icon">
 		<a href="Main.html">
@@ -193,7 +196,7 @@ body{
 	</div>
 </div>
 <div id="contents-area" class="section">
-   <form>
+   <form action="SelftestController" method="get">
    <tr>
       <h1>코로나 19 자가진단 설문 (COVID-19 Self Check)</h1>
    </tr>
@@ -214,8 +217,8 @@ body{
          <td>Do you live with a family member(or a domestic partner) who visited foreign countries within the 14 days?</td>
       </tr>
       <tr>
-         <td><input type="checkbox" name="question" value="Y">예(YES)
-         <input type="checkbox" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question1" value="Y">예(YES)
+         <input type="radio" name="question1" value="N">아니오(NO)</td>
       </tr>
 	</div>
 	<div class="touch">
@@ -227,8 +230,8 @@ body{
          <td>Have you had contact with a confirmed COVID-19 patient within the last 14 days?</td>
       </tr>
       <tr>
-         <td><input type="checkbox" name="question" value="Y">예(YES)
-         <input type="checkbox" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question2" value="Y">예(YES)
+         <input type="radio" name="question2" value="N">아니오(NO)</td>
       </tr>
   	</div>
 
@@ -240,8 +243,8 @@ body{
          <td>Did you visit any regional districsts or failities within Korea where mass outbreaks of the COVID-19 occurred within the last 14 days?</td>
       </tr>
       <tr>   
-         <td><input type="checkbox" name="question" value="Y ">예(YES)
-         <input type="checkbox" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question3" value="Y ">예(YES)
+         <input type="radio" name="question3" value="N">아니오(NO)</td>
       </tr>
 	</div>
 
@@ -254,8 +257,8 @@ body{
          <td>Have you ever been contacted by the Korea Centers for Disease Control and Prevention to report that you have contacted a confirmed COVID-19 patient (or contact person)?</td>
       </tr>
       <tr>   
-         <td><input type="checkbox" name="question" value="Y">예(YES)
-         <input type="checkbox" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question4" value="Y">예(YES)
+         <input type="radio" name="question4" value="N">아니오(NO)</td>
       </tr>
 	</div>
 	<div class="symptom">
@@ -266,8 +269,8 @@ body{
          <td>Do you currently have fever, respiratory symtom(cough, breathing difficulties, pneumonia), sore throat, or loss of taste or smell?</td>
       </tr>
       <tr>   
-         <td><input type="checkbox" name="question" value="Y">예(YES)
-         <input type="checkbox" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question5" value="Y">예(YES)
+         <input type="radio" name="question5" value="N">아니오(NO)</td>
       </tr>
 	</div>
 	<div class="tfQ">
@@ -278,8 +281,8 @@ body{
          <td>Did you answer the above questions without falsehood?</td>
       </tr>
       <tr>   
-         <td><input type="radio" name="question" value="Y">예(YES)
-         <input type="radio" name="question" value="N">아니오(NO)</td>
+         <td><input type="radio" name="question6" value="Y">예(YES)
+         <input type="radio" name="question6" value="N">아니오(NO)</td>
       </tr>
      </div>
    
@@ -287,7 +290,7 @@ body{
       
       <tr>
          <td colspan="2">
-            <input type="button" value="등록" id="Register" onclick="submit()"><input type="button"value="초기화">
+            <input type="submit" value="등록" id="Register" onclick="submit()"><input type="button"value="초기화">
          </td>
       </tr>
    </table>
